@@ -4,14 +4,20 @@ import data from "../data/data.json";
 import { useContext } from "react";
 import { UserContext } from "../Contexts/UserContext";
 
+
 function Menulinks() {
-  const { themes } = useContext(UserContext);
+ 
+  const { themes,setIndex } = useContext(UserContext);
+const local=(id)=>{
+  localStorage.setItem('index',id)
+}
   return (
     <div className="sm:w-[100%] w-full sm:h-[85vh]   flex flex-col sm:gap-10 gap-5 sm:justify-center items-center">
-      {data.map((item) => {
+      {data.map((item,index) => {
         return (
           <Link
-            to={`/${item.title}`}
+          onClick={()=>local(index)}
+            to={`/HTML`}
             key={item.title}
             className={`sm:w-[400px] sm:h-[50px] w-[250px] h-10 rounded-2xl flex sm:gap-5 gap-2 items-center px-3 hover:scale-[1.03] transition-transform  active:border-green-700 outline-none border-2 shadow-md   ${
               themes ? "bg-violet-500" : "text-white bg-orange-400"

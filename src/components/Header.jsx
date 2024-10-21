@@ -44,7 +44,7 @@ function Header() {
   }, [themes]);
 
   return (
-    <header className="sm:h-[15vh] h-[30px] w-full  flex items-center justify-around">
+    <header className="sm:h-[15vh] h-[50px] w-full  flex items-center justify-around">
       <div className="font-bold sm:leading-8 leading-4 text-xl">
         <p
           className={`${

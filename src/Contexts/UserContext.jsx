@@ -7,12 +7,15 @@ const modetoggle=()=>{
 }
 const UserProvider = ({ children }) => {
     const [themes,setThemes]=useState(modetoggle())
+    const [index,setIndex]=useState(null)
 
   return (
     <UserContext.Provider
       value={{
         themes,
-        setThemes
+        setThemes,
+        index,
+        setIndex
     }}
     >
       {children}

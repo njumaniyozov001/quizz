@@ -258,9 +258,10 @@ import { MdOutlineLightMode } from "react-icons/md";
 import { VscError } from "react-icons/vsc";
 import { CiCircleCheck } from "react-icons/ci";
 
-function HTML() {
+function Quizz() {
   const { themes, setThemes } = useContext(UserContext);
 
+  const index = localStorage.getItem("index");
   const themeToggle = () => {
     const newtheme = themes ? false : true;
     setThemes(newtheme);
@@ -276,7 +277,7 @@ function HTML() {
     }
   }, [themes]);
 
-  const questions = data[0].questions;
+  const questionss = index ? data[index].questions : "";
 
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -285,6 +286,7 @@ function HTML() {
   const [statusDisabled, setStatusDisabled] = useState(false);
   const [nonSelectedAnswer, setNonSelectedAnswer] = useState(null);
   const [quizComplete, setQuizComplete] = useState(false); // Track quiz completion
+  let counter = 0;
 
   const handleSelectAnswer = (option, optionIndex) => {
     if (!statusDisabled) {
@@ -294,8 +296,8 @@ function HTML() {
   };
 
   const submitAnswer = () => {
-    const correctAnswer = questions[currentQuestionIndex].answer;
-    const correctIndex = questions[currentQuestionIndex].options.findIndex(
+    const correctAnswer = questionss[currentQuestionIndex].answer;
+    const correctIndex = questionss[currentQuestionIndex].options.findIndex(
       (option) => option === correctAnswer
     );
 
@@ -313,7 +315,7 @@ function HTML() {
   };
 
   const handleNextQuestion = () => {
-    if (currentQuestionIndex + 1 >= questions.length) {
+    if (currentQuestionIndex + 1 >= questionss.length) {
       setQuizComplete(true); // Mark the quiz as complete
     } else {
       setAnswerStatus(null);
@@ -329,14 +331,14 @@ function HTML() {
     <div className="w-full h-[100vh] ">
       {!quizComplete ? (
         <>
-          <div className="sm:h-[15vh] h-[10vh] flex  justify-around  items-center">
+          <div className="sm:h-[15vh] h-[50px] flex  justify-around  items-center">
             <div
               className={`flex sm:gap-2 gap-1 sm:h-[50px] sm:w-[250px] w-[110px] h-[30px] rounded-2xl ${
                 themes ? "bg-violet-500" : "bg-orange-400 text-white"
               } px-2 items-center`}
             >
               <img
-                src={data[0].icon}
+                src={data[index].icon}
                 className={`sm:h-[35px] sm:w-[35px] h-5 w-5 p-1 rounded-md ${
                   themes ? "bg-stone-200" : "bg-orange-500"
                 }`}
@@ -346,7 +348,7 @@ function HTML() {
                   themes ? "text-black" : "text-white"
                 }`}
               >
-                {data[0].title}
+                {data[index].title}
               </p>
             </div>
             <div className="flex gap-2">
@@ -375,17 +377,17 @@ function HTML() {
             </div>
           </div>
           <div className="w-full sm:h-[85vh] grid place-items-center sm:grid-cols-2 grid-cols-1 ">
-            <div className="w-full sm:h-[85vh] flex flex-col sm:gap-10 gap-3 sm:mt-0 mt-4 justify-evenly items-center mb-5">
+            <div className="w-full sm:h-[80vh] flex flex-col sm:gap-10 gap-3 sm:mt-0 mt-4 justify-evenly items-center mb-5">
               <div
                 className={`w-full font-semibold grid place-items-center  ${
                   themes ? "text-black" : "text-white"
                 }`}
               >
                 <i className="sm:text-[20px] text-[12px]">
-                  Question {currentQuestionIndex + 1} of {questions.length}
+                  Question {currentQuestionIndex + 1} of {questionss.length}
                 </i>
-                <p className="sm:text-[25px] text-[13px] text-center">
-                  {questions[currentQuestionIndex].question}
+                <p className="sm:text-[25px] text-[13px] px-2 text-center">
+                  {questionss[currentQuestionIndex].question}
                 </p>
               </div>
 
@@ -393,21 +395,22 @@ function HTML() {
                 <input
                   type="range"
                   min="1"
-                  max={questions.length}
+                  max={questionss.length}
                   value={currentQuestionIndex + 1}
                   readOnly
                   className="sm:w-[300px] w-[300px] "
                 />
               </div>
             </div>
-            <div className="w-full sm:h-[85vh] grid place-items-center ">
+            <div className="w-full sm:h-[80vh] flex items-center justify-center">
               <form
+                className=" w-[500px] h-[400px] flex flex-col justify-center items-center sm:gap-5 gap-3"
                 onSubmit={(e) => {
                   e.preventDefault();
                   submitAnswer();
                 }}
               >
-                {questions[currentQuestionIndex].options.map(
+                {questionss[currentQuestionIndex].options.map(
                   (option, optionIndex) => {
                     const isCorrect =
                       answerStatus === "correct" &&
@@ -418,13 +421,12 @@ function HTML() {
                     const nonSelected =
                       answerStatus === "incorrect" &&
                       nonSelectedAnswer === optionIndex;
-
                     return (
                       <div
                         key={option}
                         onClick={() => handleSelectAnswer(option, optionIndex)}
-                        className={`sm:w-[400px] sm:h-14 w-[300px] h-9 flex items-center justify-between rounded-xl outline-none border-2  shadow-md  hover:cursor-pointer active:scale-[1.03] sm:hover:scale-[1.03] transition-transform px-2 gap-2 mb-5 ${
-                          themes ? "bg-white" : "bg-orange-500"
+                        className={`sm:w-[450px] sm:h-14 w-[300px] h-10 flex items-center justify-between rounded-xl outline-none border-2  shadow-md  hover:cursor-pointer active:scale-[1.03] sm:hover:scale-[1.03] transition-transform px-2 gap-2 ${
+                          themes ? "bg-white" : "bg-orange-400"
                         }
                         ${
                           selectedIndex === optionIndex && answerStatus === null
@@ -441,7 +443,7 @@ function HTML() {
                          ${isCorrect ? "border-green-500" : ""}
                         `}
                       >
-                        <div className="flex gap-1 sm:text-[20px] text-[9px] items-center">
+                        <div className="flex gap-1 sm:text-[20px] sm:leading-6 leading-5 text-[9px] items-center">
                           <span
                             className={`sm:h-8 sm:w-8 h-5 w-5  grid place-items-center rounded-md ${
                               selectedIndex === optionIndex
@@ -475,42 +477,34 @@ function HTML() {
                 {!answerStatus && (
                   <button
                     type="submit"
-                    className={`sm:w-[400px] sm:h-10 w-[300px] h-9 sm:text-[20px] [text-13px] sm:hover:scale-[1.03] active:scale-[1.03] transition-transform ${
+                    className={`sm:w-[450px] sm:h-10 w-[300px] h-9 sm:text-[20px] [text-13px] sm:hover:scale-[1.03] active:scale-[1.03] transition-transform ${
                       themes ? "bg-violet-500" : "bg-orange-500"
-                    } rounded-xl grid place-items-center mb-3`}
+                    } rounded-xl grid place-items-center`}
                   >
                     Submit answer
                   </button>
                 )}
+                {answerStatus && (
+                  <button
+                    onClick={handleNextQuestion}
+                    className={`sm:w-[450px] sm:h-10 w-[300px] h-9 sm:text-[20px] [text-13px] sm:hover:scale-[1.03] transition-transform active:scale-[1.03] ${
+                      themes ? "bg-violet-500" : "bg-orange-500"
+                    }  rounded-xl grid place-items-center mb-3`}
+                  >
+                    {currentQuestionIndex + 1 >= questionss.length
+                      ? "Finish"
+                      : "Next Question"}
+                  </button>
+                )}
               </form>
-
-              {answerStatus && (
-                <button
-                  onClick={handleNextQuestion}
-                  className={`sm:w-[400px] sm:h-10 w-[300px] h-9 sm:text-[20px] [text-13px] sm:hover:scale-[1.03] transition-transform active:scale-[1.03] ${
-                    themes ? "bg-violet-500" : "bg-orange-500"
-                  }  rounded-xl grid place-items-center mb-3`}
-                >
-                  {currentQuestionIndex + 1 >= questions.length
-                    ? "Finish"
-                    : "Next Question"}
-                </button>
-              )}
             </div>
           </div>
         </>
       ) : (
-        <div className="w-full h-[100vh] grid place-items-center">
-          <div>
-            <h1>You are almost done</h1>
-          </div>
-          <div>
-            <div className="w-[300px] h-[300px] bg-white shadow-md rounded-2xl"></div>
-          </div>
-        </div>
+        <div className="w-full h-[100vh] grid place-items-center sm:grid-cols-2 grid-cols-1 text-center text-[25px] transition-transform animate-pulse"><h1>hello world</h1></div>
       )}
     </div>
   );
 }
 
-export default HTML;
+export default Quizz;
