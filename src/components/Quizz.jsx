@@ -501,7 +501,7 @@ function Quizz() {
           </div>
         </>
       ) : (
-        <div className="w-full h-[100vh] grid place-items-center sm:grid-cols-2 grid-cols-1 text-center text-[25px] transition-transform animate-pulse"><h1>hello world</h1></div>
+        <div className={`w-full h-[100vh] grid place-items-center  text-center text-[25px] transition-transform animate-pulse ${themes ? 'text-black':'text-white'}`}><h1>hello world</h1></div>
       )}
     </div>
   );
