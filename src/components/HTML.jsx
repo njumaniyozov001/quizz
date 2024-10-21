@@ -381,10 +381,10 @@ function HTML() {
                   themes ? "text-black" : "text-white"
                 }`}
               >
-                <i className="sm:text-[20px] text-[10px]">
+                <i className="sm:text-[20px] text-[12px]">
                   Question {currentQuestionIndex + 1} of {questions.length}
                 </i>
-                <p className="sm:text-[25px] text-[11px] text-center">
+                <p className="sm:text-[25px] text-[13px] text-center">
                   {questions[currentQuestionIndex].question}
                 </p>
               </div>
@@ -396,7 +396,7 @@ function HTML() {
                   max={questions.length}
                   value={currentQuestionIndex + 1}
                   readOnly
-                  className="sm:w-[300px] w-[250px] "
+                  className="sm:w-[300px] w-[300px] "
                 />
               </div>
             </div>
@@ -423,7 +423,9 @@ function HTML() {
                       <div
                         key={option}
                         onClick={() => handleSelectAnswer(option, optionIndex)}
-                        className={`sm:w-[400px] sm:h-14 w-[250px] h-6 flex items-center justify-between rounded-xl outline-none border-2  shadow-md  hover:cursor-pointer active:scale-[1.03] sm:hover:scale-[1.03] transition-transform px-2 gap-2 mb-5 ${themes ? 'bg-white':'bg-orange-500'}
+                        className={`sm:w-[400px] sm:h-14 w-[300px] h-9 flex items-center justify-between rounded-xl outline-none border-2  shadow-md  hover:cursor-pointer active:scale-[1.03] sm:hover:scale-[1.03] transition-transform px-2 gap-2 mb-5 ${
+                          themes ? "bg-white" : "bg-orange-500"
+                        }
                         ${
                           selectedIndex === optionIndex && answerStatus === null
                             ? "border-violet-500"
@@ -439,9 +441,9 @@ function HTML() {
                          ${isCorrect ? "border-green-500" : ""}
                         `}
                       >
-                        <div className="flex gap-1 sm:text-[20px] text-[8px] items-center">
+                        <div className="flex gap-1 sm:text-[20px] text-[9px] items-center">
                           <span
-                            className={`sm:h-8 sm:w-8 h-4 w-4  grid place-items-center rounded-md ${
+                            className={`sm:h-8 sm:w-8 h-5 w-5  grid place-items-center rounded-md ${
                               selectedIndex === optionIndex
                                 ? "bg-violet-500"
                                 : "bg-gray-300"
@@ -473,7 +475,9 @@ function HTML() {
                 {!answerStatus && (
                   <button
                     type="submit"
-                    className={`sm:w-[400px] sm:h-10 w-[250px] h-6 sm:text-[20px] [text-13px] sm:hover:scale-[1.03] active:scale-[1.03] transition-transform ${themes ? 'bg-violet-500':'bg-orange-500'} rounded-xl grid place-items-center mb-3`}
+                    className={`sm:w-[400px] sm:h-10 w-[300px] h-9 sm:text-[20px] [text-13px] sm:hover:scale-[1.03] active:scale-[1.03] transition-transform ${
+                      themes ? "bg-violet-500" : "bg-orange-500"
+                    } rounded-xl grid place-items-center mb-3`}
                   >
                     Submit answer
                   </button>
@@ -483,7 +487,9 @@ function HTML() {
               {answerStatus && (
                 <button
                   onClick={handleNextQuestion}
-                  className={`sm:w-[400px] sm:h-10 w-[250px] h-6 sm:text-[20px] [text-13px] sm:hover:scale-[1.03] transition-transform active:scale-[1.03] ${themes ? 'bg-violet-500':'bg-orange-500'}  rounded-xl grid place-items-center mb-3`}
+                  className={`sm:w-[400px] sm:h-10 w-[300px] h-9 sm:text-[20px] [text-13px] sm:hover:scale-[1.03] transition-transform active:scale-[1.03] ${
+                    themes ? "bg-violet-500" : "bg-orange-500"
+                  }  rounded-xl grid place-items-center mb-3`}
                 >
                   {currentQuestionIndex + 1 >= questions.length
                     ? "Finish"
@@ -495,9 +501,12 @@ function HTML() {
         </>
       ) : (
         <div className="w-full h-[100vh] grid place-items-center">
-          <h1 className="text-[32px] font-bold">
-            You have completed the quiz!
-          </h1>
+          <div>
+            <h1>You are almost done</h1>
+          </div>
+          <div>
+            <div className="w-[300px] h-[300px] bg-white shadow-md rounded-2xl"></div>
+          </div>
         </div>
       )}
     </div>

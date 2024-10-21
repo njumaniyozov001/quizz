@@ -11,7 +11,7 @@ function Menulinks() {
       {data.map((item) => {
         return (
           <Link
-            to={`/${item.title}`}
+            to={`/global/${item.title}`}
             key={item.title}
             className={`sm:w-[400px] sm:h-[50px] w-[250px] h-10 rounded-2xl flex sm:gap-5 gap-2 items-center px-3 hover:scale-[1.03] transition-transform  active:border-green-700 outline-none border-2 shadow-md   ${
               themes ? "bg-violet-500" : "text-white bg-orange-400"
