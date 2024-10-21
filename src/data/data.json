@@ -258,7 +258,7 @@
     {
       "title": "Accessibility",
       "color": "#F6E7FF",
-      "icon": "src/assets/icons/accessibility.png",
+      "icon": "src/assets/icons/css.png",
       "questions": [
         {
           "question": "What does 'WCAG' stand for?",
