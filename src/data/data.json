@@ -2,7 +2,7 @@
     {
       "title": "HTML",
       "color": "#FFF1E9",
-      "icon": "../global/html.png",
+      "icon": "./global/html.png",
       "questions": [
         {
           "question": "What does HTML stand for?",
@@ -84,7 +84,7 @@
     {
       "title": "CSS",
       "color": "#E0FDEF",
-      "icon": "../global/css.png",
+      "icon": "./global/css.png",
       "questions": [
         {
           "question": "What does CSS stand for?",
@@ -161,7 +161,7 @@
     {
       "title": "JavaScript",
       "color": "#EBF0FF",
-      "icon": "../global/js.png",
+      "icon": "./global/js.png",
       "questions": [
         {
           "question": "Which syntax is correct to output 'Hello World' in an alert box?",
@@ -258,7 +258,7 @@
     {
       "title": "Accessibility",
       "color": "#F6E7FF",
-      "icon": "../global/accessibility.png",
+      "icon": "./global/accessibility.png",
       "questions": [
         {
           "question": "What does 'WCAG' stand for?",
