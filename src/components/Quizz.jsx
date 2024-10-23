@@ -257,7 +257,8 @@ import { MdNightsStay } from "react-icons/md";
 import { MdOutlineLightMode } from "react-icons/md";
 import { VscError } from "react-icons/vsc";
 import { CiCircleCheck } from "react-icons/ci";
-
+import { Link } from "react-router-dom";
+Link;
 function Quizz() {
   const { themes, setThemes } = useContext(UserContext);
 
@@ -286,7 +287,7 @@ function Quizz() {
   const [statusDisabled, setStatusDisabled] = useState(false);
   const [nonSelectedAnswer, setNonSelectedAnswer] = useState(null);
   const [quizComplete, setQuizComplete] = useState(false); // Track quiz completion
-  let counter = 0;
+  const [countCorrectOption, setCountCorrectAnswerOption] = useState(0);
 
   const handleSelectAnswer = (option, optionIndex) => {
     if (!statusDisabled) {
@@ -294,7 +295,6 @@ function Quizz() {
       setSelectedAnswer(option);
     }
   };
-
   const submitAnswer = () => {
     const correctAnswer = questionss[currentQuestionIndex].answer;
     const correctIndex = questionss[currentQuestionIndex].options.findIndex(
@@ -306,6 +306,7 @@ function Quizz() {
     } else {
       if (selectedAnswer === correctAnswer) {
         setAnswerStatus("correct");
+        setCountCorrectAnswerOption(countCorrectOption + 1);
       } else {
         setAnswerStatus("incorrect");
         setNonSelectedAnswer(correctIndex);
@@ -486,6 +487,7 @@ function Quizz() {
                 )}
                 {answerStatus && (
                   <button
+                    type="submit"
                     onClick={handleNextQuestion}
                     className={`sm:w-[450px] sm:h-10 w-[300px] h-9 sm:text-[20px] [text-13px] sm:hover:scale-[1.03] transition-transform active:scale-[1.03] ${
                       themes ? "bg-violet-500" : "bg-orange-500"
@@ -502,15 +504,25 @@ function Quizz() {
         </>
       ) : (
         <div
-          className={`w-full h-[100vh] grid place-items-center  ${
+          className={`w-full h-[100vh] grid place-items-center sm:grid-cols-2 auto-rows-auto grid-cols-1  ${
             themes ? "text-black" : "text-white"
           }`}
         >
-          <h1>You scorede...</h1>
-          <div className="w-[200px] h-[200px] rounded-2xl bg-gray-300 shadow-md">
-            <p className="text-center">ksfhkfkhh</p>
+          <h1 className="sm:text-[50px] text-[40px]">You scored...</h1>
+          <div className="sm:w-[400px] sm:h-[300px] w-[300px] h-[250px] rounded-2xl flex flex-col items-center justify-evenly bg-white shadow-sm">
+            <div className="flex flex-col gap-2">
+              <p className="text-center w-[60px] h-[60px] grid place-items-center text-[40px] bg-white shadow-md rounded-sm ">
+                {countCorrectOption}
+              </p>
+              <span className="text-center">of {questionss.length}</span>
+            </div>
+            <Link
+              to={"/"}
+              className="w-[200px] h-10 grid place-items-center active:scale-[1.03] sm:hover:scale-[1.03] transition-transform bg-white shadow-sm rounded-xl"
+            >
+              Try again
+            </Link>
           </div>
-          <button>Try again</button>
         </div>
       )}
     </div>
