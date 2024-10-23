@@ -327,6 +327,9 @@ function Quizz() {
       setCurrentQuestionIndex((prev) => prev + 1);
     }
   };
+  useEffect(() => {
+    document.title = `${data[index].title}`;
+  }, [index]);
 
   return (
     <div className="w-full h-[100vh] ">

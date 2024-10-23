@@ -15,6 +15,18 @@ const route=createBrowserRouter([
                 path:'/HTML',
                 element:<HTML />
             },            
+            {
+                path:'/CSS',
+                element:<HTML />
+            },            
+            {
+                path:'/JavaScript',
+                element:<HTML />
+            },            
+            {
+                path:'/Accessibility',
+                element:<HTML />
+            },            
             
         ]
     }
