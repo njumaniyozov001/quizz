@@ -45,18 +45,18 @@ function Header() {
 
   return (
     <header className="sm:h-[15vh] h-[50px] w-full  flex items-center justify-around">
-      <div className="font-bold sm:leading-8 leading-4 text-xl">
+      <div className="font-semibold sm:leading-8 leading-4">
         <p
           className={`${
             themes ? "text-black" : "text-white"
-          } sm:text-[26px] text-[15px]`}
+          } sm:text-[24px] text-[15px]`}
         >
           {date}
         </p>
         <p
           className={`${
             themes ? "text-black" : "text-white"
-          } sm:text-[26px] text-[15px]`}
+          } sm:text-[24px] text-[15px]`}
         >
           {time}
         </p>
