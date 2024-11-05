@@ -9,6 +9,7 @@ const App = () => {
 
   return (
     <div className="relative w-full h-[100vh] box-border">
+
       <Header />
       <main className="w-full sm:h-[70vh] grid grid-cols-1 gap-y-10 sm:grid-cols-2 place-items-center ">
         <div className="w-full sm:h-[70vh]  grid place-items-center">

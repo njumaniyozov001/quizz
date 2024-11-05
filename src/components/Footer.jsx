@@ -3,7 +3,7 @@ import insta from '/assets/insta.svg'
 import github from '/assets/github.svg'
 function Footer() {
   return (
-    <div className="absolute bottom-0 w-full sm:h-[15vh] box-border bg-stone-500 flex items-center justify-around">
+    <div className="absolute bottom-0 z-10 w-full sm:h-[15vh] box-border bg-stone-500 flex items-center justify-around">
         <h1 className='text-center sm:text-[26px] text-[16px] sm:leading-7 leading-5 font-sans'> 
            contact <br /> 8022
         </h1>

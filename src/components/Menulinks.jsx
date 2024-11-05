@@ -12,7 +12,7 @@ const local=(id)=>{
   localStorage.setItem('index',id)
 }
   return (
-    <div className="sm:w-[100%] w-full sm:h-[70vh]   flex flex-col sm:gap-10 gap-5 sm:justify-center items-center">
+    <div className="w-full sm:h-[70vh]   flex flex-col sm:gap-10 gap-5 sm:justify-center items-center">
       {data.map((item,index) => {
         return (
           <Link
